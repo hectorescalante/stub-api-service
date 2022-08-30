@@ -11,7 +11,8 @@ namespace Stub.Persistence.InMemory
 
         public Task<T> SaveAsync<T>(string key, T value)
         {
-            return Task.FromResult(_memoryCache.Set(key, value));
+            var ttl = new TimeSpan(0, 10, 0);
+            return Task.FromResult(_memoryCache.Set(key, value, ttl));
         }
 
         public Task<T> GetAsync<T>(string key)
